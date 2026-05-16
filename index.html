@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XPF Coin — La Crypto du Fenua 🌺</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700;900&family=Josefin+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rouge: #CE1126;
+      --orange: #FF6B00;
+      --or: #FFD700;
+      --ocean: #003F88;
+      --lagon: #00B4D8;
+      --sable: #FFF5E4;
+      --nuit: #0A0F1E;
+      --blanc: #FFFFFF;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Josefin Sans', sans-serif;
+      background: var(--nuit);
+      color: var(--blanc);
+      overflow-x: hidden;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 4rem;
+      background: rgba(10,15,30,0.9);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,215,0,0.15);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: var(--or);
+    }
+
+    .logo span { color: var(--lagon); }
+
+    nav ul { list-style: none; display: flex; gap: 3rem; }
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--or); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-img {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10,15,30,0.55) 0%, rgba(0,63,136,0.45) 60%, rgba(10,15,30,0.95) 100%),
+        url('https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Bora_Bora_Mount_Otemanu.jpg/1280px-Bora_Bora_Mount_Otemanu.jpg') center/cover no-repeat;
+      animation: zoom 25s ease-in-out infinite alternate;
+    }
+
+    @keyframes zoom {
+      from { transform: scale(1); }
+      to   { transform: scale(1.07); }
+    }
+
+    .hero-wave {
+      position: absolute;
+      bottom: -2px; left: 0; right: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      animation: fadeUp 1.4s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform: translateY(50px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255,215,0,0.12);
+      border: 1px solid rgba(255,215,0,0.4);
+      color: var(--or);
+      padding: 0.4rem 1.5rem;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 900;
+      line-height: 1.0;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 .t1 { color: var(--or); }
+    .hero h1 .t2 { color: var(--lagon); }
+    .hero h1 .t3 { color: var(--blanc); font-size: 0.6em; display: block; letter-spacing: 8px; text-transform: uppercase; font-weight: 300; margin-top: 0.5rem; }
+
+    .hero p {
+      font-size: 1rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+      opacity: 0.85;
+      max-width: 550px;
+      margin: 0 auto 3rem;
+      line-height: 1.8;
+    }
+
+    .btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--or), var(--orange));
+      color: var(--nuit);
+      padding: 1rem 2.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 25px rgba(255,215,0,0.3);
+    }
+
+    .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 8px 35px rgba(255,215,0,0.5); }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blanc);
+      padding: 1rem 2.5rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.4);
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .btn-outline:hover { transform: translateY(-3px); border-color: var(--lagon); color: var(--lagon); }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: linear-gradient(90deg, rgba(0,63,136,0.4), rgba(206,17,38,0.2), rgba(0,63,136,0.4));
+      border-top: 1px solid rgba(255,215,0,0.15);
+      border-bottom: 1px solid rgba(255,215,0,0.15);
+      padding: 2.5rem 2rem;
+    }
+
+    .stats-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .stat h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--or);
+    }
+
+    .stat p {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-top: 0.3rem;
+    }
+
+    /* ── SECTION GÉNÉRIQUE ── */
+    .section {
+      padding: 7rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .label {
+      font-size: 0.65rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--lagon);
+      margin-bottom: 1rem;
+    }
+
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      font-size: 0.95rem;
+      line-height: 2;
+      opacity: 0.8;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .about-text p strong { color: var(--or); font-weight: 600; }
+
+    .about-photo {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 480px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .about-photo:hover img { transform: scale(1.05); }
+
+    .about-photo::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(0,63,136,0.6) 100%);
+      z-index: 1;
+    }
+
+    .photo-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      left: 1.5rem;
+      z-index: 2;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--lagon);
+    }
+
+    /* ── GALERIE ── */
+    .galerie-bg {
+      background: linear-gradient(180deg, var(--nuit), rgba(0,63,136,0.2), var(--nuit));
+      padding: 7rem 2rem;
+    }
+
+    .galerie-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .galerie-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 12px;
+    }
+
+    .g-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .g-item:nth-child(1) { grid-column: span 7; }
+    .g-item:nth-child(2) { grid-column: span 5; }
+    .g-item:nth-child(3) { grid-column: span 4; }
+    .g-item:nth-child(4) { grid-column: span 5; }
+    .g-item:nth-child(5) { grid-column: span 3; }
+
+    .g-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      display: block;
+    }
+
+    .g-item:hover img { transform: scale(1.08); }
+
+    .g-item .cap {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem 1.2rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--lagon);
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+    }
+
+    .g-item:hover .cap { transform: translateY(0); }
+
+    /* ── TOKEN ── */
+    .token-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .t-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,215,0,0.12);
+      border-radius: 4px;
+      padding: 2rem 1.5rem;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .t-card:hover { border-color: rgba(255,215,0,0.4); transform: translateY(-4px); }
+
+    .t-card .icon { font-size: 1.8rem; margin-bottom: 1rem; }
+
+    .t-card h4 {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--lagon);
+      margin-bottom: 0.5rem;
+    }
+
+    .t-card p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--or);
+    }
+
+    .t-card .sub {
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+      word-break: break-all;
+      letter-spacing: 0;
+    }
+
+    /* ── ACHETER ── */
+    .buy-bg {
+      background: linear-gradient(135deg, rgba(206,17,38,0.1), rgba(0,63,136,0.2));
+      padding: 7rem 2rem;
+      text-align: center;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 4rem auto 0;
+    }
+
+    .step {
+      padding: 2rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.02);
+      transition: border-color 0.3s;
+    }
+
+    .step:hover { border-color: rgba(0,180,216,0.4); }
+
+    .step-num {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--rouge), var(--orange));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin: 0 auto 1.2rem;
+    }
+
+    .step h4 { color: var(--or); font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.8rem; }
+    .step p { font-size: 0.8rem; opacity: 0.65; line-height: 1.7; font-weight: 300; }
+
+    /* ── DRAPEAU SECTION ── */
+    .fenua-bg {
+      padding: 6rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .fenua-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .fenua-photos {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      height: 450px;
+    }
+
+    .fenua-photos .fp {
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .fenua-photos .fp:first-child {
+      grid-row: span 2;
+    }
+
+    .fenua-photos img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .fenua-photos .fp:hover img { transform: scale(1.06); }
+
+    .fenua-text p {
+      font-size: 0.9rem;
+      line-height: 2;
+      opacity: 0.75;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .quote {
+      border-left: 3px solid var(--rouge);
+      padding-left: 1.5rem;
+      margin: 2rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--or);
+      line-height: 1.6;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(0,0,0,0.6);
+      border-top: 1px solid rgba(255,215,0,0.1);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--or);
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--lagon);
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .footer-links a:hover { opacity: 1; }
+
+    footer p {
+      font-size: 0.8rem;
+      opacity: 0.4;
+      line-height: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .flag-stripe {
+      height: 4px;
+      background: linear-gradient(90deg, var(--rouge) 33%, var(--blanc) 33% 66%, var(--rouge) 66%);
+      margin-bottom: 1rem;
+      border-radius: 2px;
+      max-width: 80px;
+      margin: 0 auto 2rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { height: 300px; }
+      .galerie-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .g-item { grid-column: span 1 !important; height: 200px; }
+      .token-grid { grid-template-columns: 1fr 1fr; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+      .fenua-inner { grid-template-columns: 1fr; }
+      .fenua-photos { height: 300px; }
+    }
+
+    @media (max-width: 600px) {
+      nav ul { display: none; }
+      .token-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .stats-inner { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="logo">XPF<span>C</span></div>
+  <ul>
+    <li><a href="#about">À Propos</a></li>
+    <li><a href="#galerie">Fenua</a></li>
+    <li><a href="#token">Token</a></li>
+    <li><a href="#acheter">Acheter</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-content">
+    <div class="badge">🌺 Nā te Polynesia — Pour la Polynésie</div>
+    <h1>
+      <span class="t1">XPF</span> <span class="t2">Coin</span>
+      <span class="t3">La Crypto du Fenua</span>
+    </h1>
+    <p>
+      Le premier token numérique né du Fenua — 
+      inspiré des lagons cristallins, des montagnes sacrées 
+      et de la culture vivante de la Polynésie Française.
+    </p>
+    <div class="btns">
+      <a href="#acheter" class="btn-gold">🛒 Acheter XPFC</a>
+      <a href="#token" class="btn-outline">📊 Voir le Token</a>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#0A0F1E"/>
+  </svg>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat"><h3>XPFC</h3><p>Symbole</p></div>
+    <div class="stat"><h3>BEP-20</h3><p>Standard</p></div>
+    <div class="stat"><h3>BSC</h3><p>Blockchain</p></div>
+    <div class="stat"><h3>1 T²</h3><p>Supply Totale</p></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="label">🌺 Notre Vision</p>
+        <h2 class="title">Né du Fenua,<br>Pour le Monde</h2>
+        <p>
+          <strong>XPF Coin (XPFC)</strong> est un token décentralisé créé en hommage 
+          à la Polynésie Française — ce paradis du Pacifique aux eaux turquoise, 
+          aux massifs volcaniques et à la culture millénaire.
+        </p>
+        <p>
+          Comme les vagues qui façonnent nos îles depuis des millénaires, 
+          XPFC incarne la force, la liberté et la continuité. 
+          Un pont entre le patrimoine polynésien et l'économie numérique du futur.
+        </p>
+        <p>
+          <strong>Ia ora na</strong> — Bienvenue dans l'économie du Pacifique. 
+          Ensemble, construisons le <strong>Fenua numérique</strong>.
+        </p>
+        <div class="quote">"E mea rahi te Fenua — Grande est notre terre"</div>
+      </div>
+      <div class="about-photo">
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Bora_Bora_James_Wiseman.jpg/1280px-Bora_Bora_James_Wiseman.jpg"
+          alt="Bora Bora Polynésie Française"
+        />
+        <div class="photo-caption">🏝️ Bora Bora — Te Motu Nui</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIE -->
+<section id="galerie" class="galerie-bg">
+  <div class="galerie-header">
+    <p class="label">🏝️ Le Fenua</p>
+    <h2 class="title" style="text-align:center">La Beauté de Notre Polynésie</h2>
+  </div>
+  <div class="galerie-grid">
+    <div class="g-item">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Bora_Bora_satellite_image.jpg/1280px-Bora_Bora_satellite_image.jpg"
+        alt="Bora Bora vue satellite"
+      />
+      <div class="cap">🛰️ Bora Bora — Vue Aérienne</div>
+    </div>
+    <div class="g-item">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Moorea_French_Polynesia_lozikiki.jpg/1280px-Moorea_French_Polynesia_lozikiki.jpg"
+        alt="Moorea"
+      />
+      <div class="cap">🌊 Moorea — Lagon Turquoise</div>
+    </div>
+    <div class="g-item">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Tahiti_Nui.jpg/1280px-Tahiti_Nui.jpg"
+        alt="Tahiti"
+      />
+      <div class="cap">🌺 Tahiti — Ile Principale</div>
+    </div>
+    <div class="g-item">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Rangiroa_atoll_from_air.jpg/1280px-Rangiroa_atoll_from_air.jpg"
+        alt="Rangiroa atoll"
+      />
+      <div class="cap">🐠 Rangiroa — L'Immense Lagon</div>
+    </div>
+    <div class="g-item">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Fakarava_atoll.jpg/1280px-Fakarava_atoll.jpg"
+        alt="Fakarava"
+      />
+      <div class="cap">🌴 Fakarava — UNESCO</div>
+    </div>
+  </div>
+</section>
+
+<!-- FENUA CULTURE -->
+<section class="fenua-bg" id="culture">
+  <div class="fenua-inner">
+    <div class="fenua-photos">
+      <div class="fp">
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Bora_Bora_Aerial_Photo.jpg/800px-Bora_Bora_Aerial_Photo.jpg"
+          alt="Bora Bora aérien"
+        />
+      </div>
+      <div class="fp">
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Papeete_from_the_air.jpg/800px-Papeete_from_the_air.jpg"
+          alt="Papeete"
+        />
+      </div>
+      <div class="fp">
+        <img 
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Huahine_French_Polynesia.jpg/800px-Huahine_French_Polynesia.jpg"
+          alt="Huahine"
+        />
+      </div>
+    </div>
+    <div class="fenua-text">
+      <p class="label">🎭 Culture & Identité</p>
+      <h2 class="title">Le Mana du<br>Pacifique</h2>
+      <p>
+        La Polynésie Française, c'est 118 îles réparties sur 5 archipels — 
+        un territoire grand comme l'Europe, au cœur du Pacifique Sud.
+      </p>
+      <p>
+        XPFC porte l'esprit du <strong style="color:var(--or)">mana</strong> polynésien — 
+        cette force spirituelle qui anime chaque île, chaque vague, chaque danse de ori Tahiti.
+      </p>
+      <p>
+        En rejoignant XPFC, vous rejoignez une communauté fière de ses racines 
+        et tournée vers l'avenir numérique.
+      </p>
+      <br>
+      <a href="#acheter" class="btn-gold">🌺 Rejoindre le Mouvement</a>
+    </div>
+  </div>
+</section>
+
+<!-- TOKEN -->
+<section id="token">
+  <div class="section">
+    <div style="text-align:center; margin-bottom:1rem">
+      <p class="label">📊 Informations Techniques</p>
+      <h2 class="title">Le Token XPFC</h2>
+    </div>
+    <div class="token-grid">
+      <div class="t-card">
+        <div class="icon">🏷️</div>
+        <h4>Nom</h4>
+        <p>XPF Coin</p>
+      </div>
+      <div class="t-card">
+        <div class="icon">🔤</div>
+        <h4>Symbole</h4>
+        <p>XPFC</p>
+      </div>
+      <div class="t-card">
+        <div class="icon">⛓️</div>
+        <h4>Blockchain</h4>
+        <p>BNB Smart Chain</p>
+      </div>
+      <div class="t-card">
+        <div class="icon">📋</div>
+        <h4>Standard</h4>
+        <p>BEP-20</p>
+      </div>
+      <div class="t-card">
+        <div class="icon">💰</div>
+        <h4>Supply Totale</h4>
+        <p>1 Trillion²</p>
+      </div>
+      <div class="t-card">
+        <div class="icon">🔗</div>
+        <h4>Contrat BSC</h4>
+        <p style="font-size:0.9rem">0x256bad...</p>
+        <div class="sub">0x256badD1f1B6f46A2e98B5A9B292f1576740F85F</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHETER -->
+<section id="acheter" class="buy-bg">
+  <p class="label">🛒 Guide d'Achat</p>
+  <h2 class="title">Comment Acheter XPFC</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h4>Installer MetaMask</h4>
+      <p>Téléchargez MetaMask et configurez votre wallet sur BNB Smart Chain (Chain ID: 56)</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h4>Obtenir des BNB</h4>
+      <p>Achetez des BNB sur Binance ou un autre exchange et transférez vers MetaMask</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h4>PancakeSwap</h4>
+      <p>Rendez-vous sur pancakeswap.finance et connectez votre wallet MetaMask</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h4>Échanger contre XPFC</h4>
+      <p>Collez l'adresse du contrat XPFC et échangez vos BNB contre des XPFC</p>
+    </div>
+  </div>
+  <br><br>
+  <a href="https://pancakeswap.finance" target="_blank" class="btn-gold">🥞 Acheter sur PancakeSwap</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="flag-stripe"></div>
+  <div class="footer-logo">XPF Coin 🌺</div>
+  <div class="footer-links">
+    <a href="https://bscscan.com/token/0x256badD1f1B6f46A2e98B5A9B292f1576740F85F" target="_blank">BscScan</a>
+    <a href="https://pancakeswap.finance" target="_blank">PancakeSwap</a>
+    <a href="https://coingecko.com" target="_blank">CoinGecko</a>
+    <a href="https://github.com/PautuHama987/xpfcoin" target="_blank">GitHub</a>
+  </div>
+  <p>
+    🌺 Ia ora na — Maeva XPFC — E mea rahi te Fenua 🇵🇫<br>
+    XPF Coin est un token décentralisé sur BNB Smart Chain.<br>
+    Investir en cryptomonnaie comporte des risques. Faites vos propres recherches (DYOR).<br><br>
+    © 2026 XPF Coin — Polynésie Française
+  </p>
+</footer>
+
+</body>
+</html>
